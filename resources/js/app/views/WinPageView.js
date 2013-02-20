@@ -43,15 +43,6 @@ define([
 	  		// creates an example event listener
 	    	this.on('testCall', this.testMethod, this);
 
-	    	var _cosmosProjectName        = "NokiaNineComp";
-		    var _cosmosProjectPassword    = "46f43d37b373af0783c9e2ffaca34eda";
-		    var _cosmosFormWrapper        = "#cosmos-form-wrapper";
-
-		    // sets up the upload details
-		    var _cosmosForm = new Cosmos.Data.newForm();
-		    _cosmosForm.defineProjectSettings(_cosmosProjectName, _cosmosProjectPassword, true);
-		    _cosmosForm.setupForm(_cosmosFormWrapper);
-
 	    },
 
     	
@@ -75,7 +66,17 @@ define([
 
 	    	// basic way to display element
 	    	$(this.el).show(); 
-	    	TweenLite.from($("#win-page #cosmos-form-wrapper"), 1.5, {css:{alpha:0}, ease:Expo.easeOut}); 	
+	    	
+	    	var _cosmosProjectName        = "NokiaNineComp";
+		    var _cosmosProjectPassword    = "46f43d37b373af0783c9e2ffaca34eda";
+		    var _cosmosFormWrapper        = "#cosmos-form-wrapper";
+
+		    // sets up the upload details
+		    var _cosmosForm = new Cosmos.Data.newForm();
+		    _cosmosForm.defineProjectSettings(_cosmosProjectName, _cosmosProjectPassword, true);
+		    _cosmosForm.setupForm(_cosmosFormWrapper);
+		    
+	    	// TweenLite.from($("#win-page #cosmos-form-wrapper"), 1.5, {css:{alpha:0}, ease:Expo.easeOut}); 	
 
 	    	//moves footer to correct position
 	    	TweenLite.to($(".mid-wrapper"), 1.5, {css:{height:620}, ease:Expo.easeInOut}); 

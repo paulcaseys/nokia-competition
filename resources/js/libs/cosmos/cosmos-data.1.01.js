@@ -124,10 +124,14 @@ Cosmos.Data.newForm = function() {
 
         this._cosmosFormWrapper = cosmosFormWrapper;
         var loadUrl = Cosmos.Config.FormModuleUrl+"?project_name="+this._projectName+"&project_password=" +this._projectPassword+"&module_name="+this._moduleName+'&ver=' + ((new Date()).getTime()) + additionalAttributes;
+
         //$(this._cosmosFormWrapper).load("http://cosmos.is:81/form/module/?project_name="+this._projectName+"&project_password=" +this._projectPassword+ '&ver=' + ((new Date()).getTime()));
         $.ajax({
-            type: "GET",
+            type: "get",
             url: loadUrl,
+            crossDomain : true,
+            dataType : 'text',
+            contentType: 'application/text',
             success: function(html){
                 $(me._cosmosFormWrapper).empty().append(html);
 
@@ -782,6 +786,7 @@ Cosmos.Data.ItemForm = function() {
         this._cosmosDataThanks = varObj.cosmosDataThanks;
 
         this._varObj = varObj;
+
 
         var ajaxOptions = {
 

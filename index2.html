@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Preview of NokiaNineComp</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <meta name="robots" CONTENT="noindex, nofollow">
+
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+<style type="text/css">
+body {
+   font-family: Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+   background-color: #eeeeee;
+   font-size: 12px;
+   margin: 0px;
+}
+.styled-button {
+  -webkit-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+  -moz-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+  box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+  background-color:#333333;
+  border:1px solid #222222;
+  font-size:12px;
+  padding:5px 8px;
+  height:28px;
+  color:#fff;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  text-decoration: none;
+}
+
+
+
+/* ----- HEADER ----- */
+
+
+
+#header {
+width:960px;
+height:150px;
+background-color:#ffffff;
+color: #aaa;
+font-size: 22px;
+text-align: center;
+display:table-cell; 
+vertical-align:middle;
+}
+#header-text {
+color: #ccc;
+font-size: 22px;
+text-align: center;
+}
+
+
+/* FAUX LAYOUT WRAPPER */
+
+
+
+
+#wrapper{
+width:960px;
+margin:0 auto;
+margin-top:30px;
+}
+#wrapper-inner{
+margin-top: 10px;
+background-color: #ffffff;
+}
+
+
+
+/* ----- NAVIGATION ----- */
+
+
+
+#navigation {
+background:#DFDFDF;
+margin-left:660px;
+position:absolute;
+width:300px;
+float: left;
+}
+
+
+/* ----- MAIN CONTENT ----- */
+
+
+
+#content { 
+margin:0px auto;
+width:620px;
+background-color:#ffffff;
+padding-top:20px;
+padding-bottom:20px;
+min-height: 400px;
+text-align: center;
+}
+
+.container:before,
+.container:after {
+    content:"";
+    display:table;
+}
+.container:after {
+    clear:both;
+}
+      /* For IE 6/7 (trigger hasLayout) */
+.container {
+    zoom:1;
+}
+
+
+/* ----- FOOTER ----- */
+
+
+
+#footer { 
+width:960px;
+height:100px;
+background-color:#ffffff;
+margin-top:10px;
+padding-top: 20px;
+}
+
+
+#notice { 
+width:100%;
+background-color:#222222;
+padding: 10px;
+position: fixed;
+top: 0px;
+color: #fff;
+text-align: center;
+z-index: 10000;
+
+}
+
+#notice a { 
+  color: #fff;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 680px) {
+  #content {
+    width: 300px;
+  }
+  #wrapper {
+    width: 320px;
+  }
+  #footer {
+    width: 320px;
+  }
+  #header {
+    width: 320px;
+  }
+}
+
+</style>
+
+
+
+
+<div id="notice">
+  <b>Cosmos module editor:</b> you can place your form anywhere on your page. This is just a basic example | <a href="/admin/NokiaNineComp/home" >Edit your form style and form fields</a> | <a href="/admin/NokiaNineComp/unique_references/recent/all/1" >View all the entries</a>
+</div>
+
+<div id="wrapper">
+  <div id="header">
+    <div id="header-text">your site header</div>
+  </div>
+  <div id="wrapper-inner" class="container">
+    <div id="content" class="container">
+    
+
+<div id="cosmos-form-wrapper">Loading...</div>
+
+<!-- jquery (if it is not already on your page) -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js" type="text/javascript" charset="utf-8"></script>
+    
+<!-- cosmos utils -->
+<script src="http://cosmos.is:81/resources/js/libs/cosmos/cosmos-image-loader.1.01.js"></script> 
+<script src="resources/js/libs/cosmos/cosmos-data.1.01.js"></script>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    var _cosmosProjectName        = "NokiaNineComp";
+    var _cosmosProjectPassword    = "46f43d37b373af0783c9e2ffaca34eda";
+    var _cosmosFormWrapper        = "#cosmos-form-wrapper";
+    var _cosmosModuleName       = "primary";
+
+    // sets up the upload details
+    var _cosmosForm = new Cosmos.Data.newForm();
+    _cosmosForm.defineProjectSettings(_cosmosProjectName, _cosmosProjectPassword, true);
+    _cosmosForm.setupForm(_cosmosFormWrapper, {success:formSuccessHandler});
+    alert('1');
+    function formSuccessHandler(){
+      alert('s')
+          }
+
+  });
+
+</script>
+
+
+
+    </div>
+    <div id="navigation"></div>
+  </div>
+  <div id="footer">
+    <div id="header-text">your site footer</div>
+  </div>
+</div>
+
+
+
+
+    </body>
+
+</html>
+
+
+
+
