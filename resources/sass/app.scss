@@ -182,11 +182,11 @@ header {display: block;	height:90px; }
 #features-page .panel-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 375px; color: #000;}
 #features-page .image-target { position: absolute; top: 0; left: 0; width: 50%; height: 375px; }
 
-#features-page .content-wrapper {top: 0; left: 50%; width: 40%; height: 100%;  position: absolute; display: table;}
+#features-page .content-wrapper {top: 0; left: 50%; width: 40%; height: 100%;  position: absolute; display: block;}
 #features-page .vertical-wrapper {top: 0; left: 0; width: 100%; height: 100%;  position: absolute; display: table;}
 #features-page .line-wrapper {border-left: 1px solid #e1e1e1; padding-left: 40px;}
 
-#features-page .content-target { display: table-cell; vertical-align: middle;  }
+#features-page .content-target { display: block; margin-top: 70px;  }
 #features-page .content-target .kicker { margin-bottom: 15px; color:#515050; font-size: 11px; }
 #features-page .content-target .title { font-family: $headerFontFamily; margin-bottom: 15px; color:#515050; font-size: 24px; }
 #features-page .content-target .body { margin-bottom: 0px; color:#515050; font-size: 14px; line-height: 22px; }

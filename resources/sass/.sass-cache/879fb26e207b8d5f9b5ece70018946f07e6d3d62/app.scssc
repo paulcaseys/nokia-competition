@@ -1,7 +1,7 @@
 3.2.3 (Media Mark)
-dfd38a13f3f5451248761877067d78e18111ed4d
+e33c101329b146e32813843ad5479c49f2ed2421
 o:Sass::Tree::RootNode
-:@template"g@// Your custom settings file to override Foundation defaults
+:@template"\@// Your custom settings file to override Foundation defaults
 @import "settings";
 
 // Comment out this import if you are customizing you imports below
@@ -185,11 +185,11 @@ header {display: block;	height:90px; }
 #features-page .panel-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 375px; color: #000;}
 #features-page .image-target { position: absolute; top: 0; left: 0; width: 50%; height: 375px; }
 
-#features-page .content-wrapper {top: 0; left: 50%; width: 40%; height: 100%;  position: absolute; display: table;}
+#features-page .content-wrapper {top: 0; left: 50%; width: 40%; height: 100%;  position: absolute; display: block;}
 #features-page .vertical-wrapper {top: 0; left: 0; width: 100%; height: 100%;  position: absolute; display: table;}
 #features-page .line-wrapper {border-left: 1px solid #e1e1e1; padding-left: 40px;}
 
-#features-page .content-target { display: table-cell; vertical-align: middle;  }
+#features-page .content-target { display: block; margin-top: 70px;  }
 #features-page .content-target .kicker { margin-bottom: 15px; color:#515050; font-size: 11px; }
 #features-page .content-target .title { font-family: $headerFontFamily; margin-bottom: 15px; color:#515050; font-size: 24px; }
 #features-page .content-target .body { margin-bottom: 0px; color:#515050; font-size: 14px; line-height: 22px; }
@@ -695,7 +695,7 @@ width;@;i ;	[ ;;;o;;;;@;"50%;i∑o;;["height;@;i ;	[ ;;;
 ;[o;3;["features-page;!" ;i∑;#o;$;%{ ;&0;!@Å;i∑o;
 ;[o;2;["image-target;!@Å;i∑;#o;$;%{ ;&0;!@Å;i∑;!@Å;i∑;i∑o;;T;@;i ;	[o;;["top;@;i ;	[ ;;;o;;;;@;"0;iπo;;["	left;@;i ;	[ ;;;o;;;;@;"50%;iπo;;["
 width;@;i ;	[ ;;;o;;;;@;"40%;iπo;;["height;@;i ;	[ ;;;o;;;;@;"	100%;iπo;;["position;@;i ;	[ ;;;o;;;;@;"absolute;iπo;;["display;@;i ;	[ ;;;o;;;;@;"
-table;iπ;["$#features-page .content-wrapper;o;;[o;;[o;
+block;iπ;["$#features-page .content-wrapper;o;;[o;;[o;
 ;[o;3;["features-page;!" ;iπ;#o;$;%{ ;&0;!@º;iπo;
 ;[o;2;["content-wrapper;!@º;iπ;#o;$;%{ ;&0;!@º;iπ;!@º;iπ;iπo;;T;@;i ;	[o;;["top;@;i ;	[ ;;;o;;;;@;"0;i∫o;;["	left;@;i ;	[ ;;;o;;;;@;"0;i∫o;;["
 width;@;i ;	[ ;;;o;;;;@;"	100%;i∫o;;["height;@;i ;	[ ;;;o;;;;@;"	100%;i∫o;;["position;@;i ;	[ ;;;o;;;;@;"absolute;i∫o;;["display;@;i ;	[ ;;;o;;;;@;"
@@ -703,7 +703,8 @@ table;i∫;["%#features-page .vertical-wrapper;o;;[o;;[o;
 ;[o;3;["features-page;!" ;i∫;#o;$;%{ ;&0;!@˜;i∫o;
 ;[o;2;["vertical-wrapper;!@˜;i∫;#o;$;%{ ;&0;!@˜;i∫;!@˜;i∫;i∫o;;T;@;i ;	[o;;["border-left;@;i ;	[ ;;;o;;;;@;"1px solid #e1e1e1;iªo;;["padding-left;@;i ;	[ ;;;o;;;;@;"	40px;iª;["!#features-page .line-wrapper;o;;[o;;[o;
 ;[o;3;["features-page;!" ;iª;#o;$;%{ ;&0;!@;iªo;
-;[o;2;["line-wrapper;!@;iª;#o;$;%{ ;&0;!@;iª;!@;iª;iªo;;T;@;i ;	[o;;["display;@;i ;	[ ;;;o;;;;@;"table-cell;iΩo;;["vertical-align;@;i ;	[ ;;;o;;;;@;"middle;iΩ;["##features-page .content-target;o;;[o;;[o;
+;[o;2;["line-wrapper;!@;iª;#o;$;%{ ;&0;!@;iª;!@;iª;iªo;;T;@;i ;	[o;;["display;@;i ;	[ ;;;o;;;;@;"
+block;iΩo;;["margin-top;@;i ;	[ ;;;o;;;;@;"	70px;iΩ;["##features-page .content-target;o;;[o;;[o;
 ;[o;3;["features-page;!" ;iΩ;#o;$;%{ ;&0;!@=;iΩo;
 ;[o;2;["content-target;!@=;iΩ;#o;$;%{ ;&0;!@=;iΩ;!@=;iΩ;iΩo;;T;@;i ;	[o;;["margin-bottom;@;i ;	[ ;;;o;;;;@;"	15px;iæo;;["
 color;@;i ;	[ ;;;o;;;;@;"#515050;iæo;;["font-size;@;i ;	[ ;;;o;;;;@;"	11px;iæ;["+#features-page .content-target .kicker;o;;[o;;[o;

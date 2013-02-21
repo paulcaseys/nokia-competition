@@ -52,7 +52,7 @@ define([
           this.eventType = this.touch ? 'touchend' : 'click';
 
           // defines a null object to bind to events
-          this.eventObj = new Object();
+          this.eventObj = {};
 
           this.bodyId = this.body.attr('id');
           this.imgRatioNum = 1600/950;

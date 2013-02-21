@@ -49,28 +49,28 @@ define([
     var initialize = function(){
 
       // initialises the app configuration (eg: App.Models.ConfigModel.browserRatioNum)
-      App.Models.ConfigModel = new ConfigModel;
+      App.Models.ConfigModel = new ConfigModel();
       
       // initialises the state controller
-      App.Models.PageStateModel = new StateModel;
+      App.Models.PageStateModel = new StateModel();
 
       // initialises the state controller for the menu
-      App.Models.PageStateMenuModel = new StateMenuModel;
+      App.Models.PageStateMenuModel = new StateMenuModel();
 
       // initialises the people details
-      App.Models.PeopleModel = new PeopleModel;
+      App.Models.PeopleModel = new PeopleModel();
 
       // initialises the people details
-      App.Models.FeaturesModel = new FeaturesModel;
-      App.Collections.FeaturesCollection = new FeaturesCollection;
+      App.Models.FeaturesModel = new FeaturesModel();
+      App.Collections.FeaturesCollection = new FeaturesCollection();
 
       // initialises the views onto the page
-      App.Views.HomePageView = new HomePageView;
-      App.Views.WinPageView = new WinPageView;
-      App.Views.FeaturesPageView = new FeaturesPageView;
-      App.Views.VideoPageView = new VideoPageView;
-      App.Views.FooterPanelView = new FooterPanelView;
-      App.Views.ImageNavPanelView = new ImageNavPanelView;
+      App.Views.HomePageView = new HomePageView();
+      App.Views.WinPageView = new WinPageView();
+      App.Views.FeaturesPageView = new FeaturesPageView();
+      App.Views.VideoPageView = new VideoPageView();
+      App.Views.FooterPanelView = new FooterPanelView();
+      App.Views.ImageNavPanelView = new ImageNavPanelView();
 
 
       // calls eventlisteners in the view, as an example

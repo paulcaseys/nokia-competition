@@ -97,9 +97,9 @@ define([
         this.galleryItemsTarget.html('<div class="four columns"><br>Loading...</div>');
 
         // loads the gallery items
-        var GItems = new GalleryModel;
+        var GItems = new GalleryModel();
         //GItems.url = App.Data.GalleryData;
-        GItems.url = "http://cosmos.is/api/service/data/format/jsonp/?project_name=SummerAtTarget&project_password=6CB4816A23A965B5DFD58E45F4C23&table=unique_references&batch=1&batchSize=6&whereConditionArray=project_id||9&select=*&orderBy=vote_count||desc&callback=?"
+        GItems.url = "http://cosmos.is/api/service/data/format/jsonp/?project_name=SummerAtTarget&project_password=6CB4816A23A965B5DFD58E45F4C23&table=unique_references&batch=1&batchSize=6&whereConditionArray=project_id||9&select=*&orderBy=vote_count||desc&callback=?";
         GItems.type = 'GET';
         GItems.dataType = 'jsonp';
         GItems.fetch({success: this.onDataLoadComplete});

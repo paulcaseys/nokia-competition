@@ -50,29 +50,29 @@ App.Data.GalleryData = 'resources/data/GalleryData.json' + '?ver=' + ((new Date(
 // APP CONFIG
 requirejs.config({
 
-	// defines paths that are used across the app
-	paths: {
+    // defines paths that are used across the app
+    paths: {
 
-		// paths to common libraries
-		'jquery': 		'resources/js/libs/jquery/jquery-min',
-		'backbone': 	'resources/js/libs/backbone/backbone-min',
-		'underscore': 	'resources/js/libs/underscore/underscore-min',
-		'json': 		'resources/js/libs/json2/json2',
+        // paths to common libraries
+        'jquery':       'resources/js/libs/jquery/jquery-min',
+        'backbone':     'resources/js/libs/backbone/backbone-min',
+        'underscore':   'resources/js/libs/underscore/underscore-min',
+        'json':         'resources/js/libs/json2/json2',
 
-		// jquery easing
-		'jquery.easing': 'resources/js/libs/jquery/jquery.easing',
+        // jquery easing
+        'jquery.easing': 'resources/js/libs/jquery/jquery.easing',
 
-		// raphael 
-		'raphael': 	'resources/js/libs/raphael/raphael.min',
+        // raphael 
+        'raphael':  'resources/js/libs/raphael/raphael.min',
 
-		// waypoints (scrolling)
-		'waypoints': 	'resources/js/libs/waypoints/waypoints.min',
+        // waypoints (scrolling)
+        'waypoints':    'resources/js/libs/waypoints/waypoints.min',
 
-		// fixie (lorem ipsum generator)
-		'fixie': 	'resources/js/libs/fixie/fixie.min',
+        // fixie (lorem ipsum generator)
+        'fixie':    'resources/js/libs/fixie/fixie.min',
 
-		// modernizr (html5 conditional and tag correction)
-		'modernizr': 	'resources/js/libs/modernizr/modernizr.min',
+        // modernizr (html5 conditional and tag correction)
+        'modernizr':    'resources/js/libs/modernizr/modernizr.min',
 
         // cosmos image loading (image loading and rescaler)
         'cosmosimageloader':    'resources/js/libs/cosmos/cosmos-image-loader.1.01',
@@ -80,15 +80,15 @@ requirejs.config({
         // cosmos data (rapid form and data service)
         'cosmosdata':    'resources/js/libs/cosmos/cosmos-data.1.01.min',
         
-		// foundation
-        'foundation': 			'resources/js/libs/foundation',
-        'foundationtopbar': 	'resources/js/libs/foundation/jquery.foundation.topbar',
-        'foundationapp': 		'resources/js/libs/foundation/app',
+        // foundation
+        'foundation':           'resources/js/libs/foundation',
+        'foundationtopbar':     'resources/js/libs/foundation/jquery.foundation.topbar',
+        'foundationapp':        'resources/js/libs/foundation/app',
 
-		// foundation
-        'tweenlite': 		'resources/js/libs/tweenlite/TweenLite.min',
-        'easepack': 		'resources/js/libs/tweenlite/EasePack.min',
-        'cssplugin': 		'resources/js/libs/tweenlite/CSSPlugin.min',
+        // foundation
+        'tweenlite':        'resources/js/libs/tweenlite/TweenLite.min',
+        'easepack':         'resources/js/libs/tweenlite/EasePack.min',
+        'cssplugin':        'resources/js/libs/tweenlite/CSSPlugin.min',
 
         // video-js (html5 video player, with swf fallback for old browsers)
         'videojs':        'resources/js/libs/video-js/video.min',
@@ -96,66 +96,66 @@ requirejs.config({
         // video-js (html5 video player, with swf fallback for old browsers)
         'prism':        'resources/js/libs/prism/prism',        
 
-		// paths to app initialiser
-		'AppInit': 								'resources/js/app/AppInit',
+        // paths to app initialiser
+        'AppInit':                              'resources/js/app/AppInit',
 
-		// paths to app router (routes hash URIs)
-		'App.Router': 						'resources/js/app/Router',
+        // paths to app router (routes hash URIs)
+        'App.Router':                       'resources/js/app/Router',
 
-		// paths to the config model (for constants)
-		'App.Models.ConfigModel': 			'resources/js/app/models/ConfigModel',
+        // paths to the config model (for constants)
+        'App.Models.ConfigModel':           'resources/js/app/models/ConfigModel',
 
-		// paths to state PAGE/PANEL model (tells which state to transition to)
-		'App.Models.StateModel': 			'resources/js/app/models/StateModel',
+        // paths to state PAGE/PANEL model (tells which state to transition to)
+        'App.Models.StateModel':            'resources/js/app/models/StateModel',
 
-		// paths to state MENU model (tells which menu item to select)
-		'App.Models.StateMenuModel': 			'resources/js/app/models/StateMenuModel',
+        // paths to state MENU model (tells which menu item to select)
+        'App.Models.StateMenuModel':            'resources/js/app/models/StateMenuModel',
 
-		// paths to views
-		'App.Views.HomePageView': 			'resources/js/app/views/HomePageView',
+        // paths to views
+        'App.Views.HomePageView':           'resources/js/app/views/HomePageView',
         'App.Views.HomePanelView':          'resources/js/app/views/HomePanelView',
         'App.Views.WinPageView':            'resources/js/app/views/WinPageView',
-		'App.Views.FeaturesPageView': 		'resources/js/app/views/FeaturesPageView',
-		'App.Views.FeaturesPanelView': 		'resources/js/app/views/FeaturesPanelView',
-		'App.Views.VideoPageView': 			'resources/js/app/views/VideoPageView',
+        'App.Views.FeaturesPageView':       'resources/js/app/views/FeaturesPageView',
+        'App.Views.FeaturesPanelView':      'resources/js/app/views/FeaturesPanelView',
+        'App.Views.VideoPageView':          'resources/js/app/views/VideoPageView',
         'App.Views.VideoPanelView':         'resources/js/app/views/VideoPanelView',
         'App.Views.FooterPanelView':        'resources/js/app/views/FooterPanelView',
         'App.Views.ImageNavPanelView':      'resources/js/app/views/ImageNavPanelView',
 
-		// paths to collections
-		'App.Collections.FeaturesCollection': 	'resources/js/app/collections/FeaturesCollection',
+        // paths to collections
+        'App.Collections.FeaturesCollection':   'resources/js/app/collections/FeaturesCollection',
 
-		// paths to models
-		//'App.Models.ExampleModel': 			'resources/js/app/models/ExampleModel'
+        // paths to models
+        //'App.Models.ExampleModel':            'resources/js/app/models/ExampleModel'
         'App.Models.PeopleModel':           'resources/js/app/models/PeopleModel',
         'App.Models.FeaturesModel':         'resources/js/app/models/FeaturesModel'
 
-	},
+    },
 
-	// dependancies for certain javascript files
-	shim: {
+    // dependancies for certain javascript files
+    shim: {
     'underscore': {
-    	exports: '_'
+        exports: '_'
     },
     'backbone': {
-    	deps: ["underscore", "jquery"],
-    	exports: "Backbone"
+        deps: ["underscore", "jquery"],
+        exports: "Backbone"
     },
     'kendo.console': {
-    	deps: ["jquery"]
+        deps: ["jquery"]
     },
     'waypoints': {
-    	deps: ["jquery"]
+        deps: ["jquery"]
     },
     'modernizr': {
-    	deps: ["jquery"]
+        deps: ["jquery"]
     },
     'jquery.easing': {
-    	deps: ["jquery"]
+        deps: ["jquery"]
     },
     'raphael': {
-    	deps: ["jquery"],
-    	exports: "raphael"
+        deps: ["jquery"],
+        exports: "raphael"
     },
     'cosmosimageloader': {
         deps: ["jquery"],
@@ -166,12 +166,12 @@ requirejs.config({
         exports: "cosmosdata"
     },
     'foundationtopbar': { 
-    	deps: ["jquery"], 
-    	exports: "foundationtopbar"
+        deps: ["jquery"], 
+        exports: "foundationtopbar"
     },
     'foundationapp': { 
-    	deps: ["jquery", "foundationtopbar"], 
-    	exports: "foundationapp"
+        deps: ["jquery", "foundationtopbar"], 
+        exports: "foundationapp"
     },
     'tweenlite': { 
         deps: ["cssplugin", "easepack"], 
@@ -182,13 +182,13 @@ requirejs.config({
         exports: "videojs"
     }
   },
-	
+    
 
-	// the duration that require.js should wait before abandoning the load 
-	waitSeconds: 300,
+    // the duration that require.js should wait before abandoning the load 
+    waitSeconds: 300,
 
-	// prevents caching during development (remove data and time for live app)
-	urlArgs: 'ver=5' + ((new Date()).getTime())
+    // prevents caching during development (remove data and time for live app)
+    urlArgs: 'ver=5' + ((new Date()).getTime())
 
 });
 
@@ -198,14 +198,14 @@ requirejs.config({
 
 requirejs([
 
-	// Load our app module and pass it to our definition function
-	'AppInit'
+    // Load our app module and pass it to our definition function
+    'AppInit'
 
-	
+    
 ], function(AppInit){
-	// dependencies are now loaded
-	// initialises app
-	AppInit.initialize();
+    // dependencies are now loaded
+    // initialises app
+    AppInit.initialize();
 
 
 });

@@ -25,7 +25,7 @@ define([
       
       showView: function(view){
         // checks if there was a previous view
-        if(this.currentView != undefined){
+        if(this.currentView !== undefined){
             // removes the previous view
             this.currentView.transitionOut();
         }
