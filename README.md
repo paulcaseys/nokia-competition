@@ -22,19 +22,19 @@ Configures the backbone app, then loads AppInit.js
 Where the views and router are initialised
 
 `resources/js/app/Router.js`
-Where the '#hash' URIs are routed 
+Where the '#hash' URIs are routed
 
 `resources/js/app/models/StateModel.js`
-This model defines the state of views. 
+This model defines the state of views.
 
 `resources/js/app/models/ConfigModel.js`
 Configures variable global settings, based on browser and device (such as windowHeight, touch, videoType, etc)
 
-Create a new state instance by: `App.Models.PageStateModel = new StateModel;`
+Create a new state instance by: `App.Models.PageStateModel = new StateModel();`
 
 Change the view of this instance can be done by `App.Models.PageStateModel.showView(App.Views.HomePageView);`
 
-You can make as many state instances as you like, so this model can be used to control the state of smaller panels inside a view. 
+You can make as many state instances as you like, so this model can be used to control the state of smaller panels inside a view.
 
 
 
@@ -48,14 +48,14 @@ For example, the `HelpPageView` contains 3x panels
     App.Views.FeaturesPanelView2 = new HelpPanelView({el: '#features-panel-2'});
     App.Views.FeaturesPanelView3 = new HelpPanelView({el: '#features-panel-3'});
 
-And I create a StateModel, to define the state 
+And I create a StateModel, to define the state
 
     // initialises the state model/controller
-    App.Models.FeaturesPanelsStateModel = new StateModel;
+    App.Models.FeaturesPanelsStateModel = new StateModel();
 
 Then I can control the state in the Router.js
 
-        // defines which panel to display 
+        // defines which panel to display
         App.Models.FeaturesPanelsStateModel.showView(App.Views["FeaturesPanelView"+id]);
 
 
@@ -74,7 +74,7 @@ We can create menu systems that are quick to select an item as "selected"
 First I create the StateMenuModel
 
         // initialises the state controller for the menu
-        App.Models.FeaturesPanelStateMenuModel = new StateMenuModel;
+        App.Models.FeaturesPanelStateMenuModel = new StateMenuModel();
 
 Then I can control the state in the Router.js
 
@@ -82,7 +82,7 @@ Then I can control the state in the Router.js
         App.Models.FeaturesPanelStateMenuModel.selectMenuItem(id, "#submenu-wrapper", "a", ".menu-item-");
 
 To clear all active states: call an itemNumber that does not exist, eg:
-        
+
         // clears all active states
         App.Models.PageStateMenuModel.selectMenuItem(10000000000, "#menu", "a", ".menu-item-");
 
@@ -91,7 +91,7 @@ details about each parameter:
         /**
        * selects a menu item and clears the selction of the other menu items in that container
        * @param  {[int]}    itemNumber                  the number of the menu item you want to select
-       * @param  {[string]} container                   the id or class of the 
+       * @param  {[string]} container                   the id or class of the
        * @param  {[string]} selectionGroup              the group of items that the class is associated with (usually "a" or "li" )
        * @param  {[string]} uiniqueSelectionClassForId  the class that the itemNumber will be appended to (eg: "menu-item-")
        */
@@ -102,14 +102,14 @@ details about each parameter:
 
 `resources/js/app/AppConfig.js` is where to define the paths to services
 
-`resources/js/app/models/` contains models. Each backbone model should contain default values. 
+`resources/js/app/models/` contains models. Each backbone model should contain default values.
 
-`resources/js/app/collections/` contains collections. This Queries the Cosmos.is webserver. 
+`resources/js/app/collections/` contains collections. This Queries the Cosmos.is webserver.
 
-Then in your collection can demand a service request. 
+Then in your collection can demand a service request.
 
         // loads the feature items
-        var GItems = new FeaturesModel;
+        var GItems = new FeaturesModel();
         GItems.url = "http://cosmos.is:81/api/service/data/format/jsonp/?project_name=NokiaNine&project_password=9ee360efafb2e2d5d6d8f5e259df151d&table=unique_references&batch=1&batchSize=50&whereConditionArray=project_id||85&select=*&orderBy=vote_count||desc&callback=?"
         GItems.type = 'GET';
         GItems.dataType = 'jsonp';
@@ -128,7 +128,7 @@ On success, your model will store the data and call the correlating method
 
 # ConfigModel
 
-this defines 
+this defines
 - app constants
 - device details (such as: is it a touch screen?),
 - browser width/height details
@@ -136,14 +136,14 @@ this defines
 - html5 video support details
 - debugging console for old browsers
 
-eventType example: 
+eventType example:
 the `eventType` is automatically configured in the `ConfigModel` (the eventType depends on the device `touchstart` : `click`)
 
         // submenu clicking
       $("#parallax-page #submenu-wrapper a").on(App.Models.ConfigModel.eventType, App.Models.ConfigModel.eventObj, submenuHandler);
 
 
-old browser debugging example: 
+old browser debugging example:
 copy the following to display a visual debug panel to the page (for old browsers that do not support console.log)
 
           $('html').append(App.Models.ConfigModel.debug);
@@ -162,7 +162,7 @@ Video-js overview
 http://videojs.com/
 
 Video-js javascript API details
-https://github.com/zencoder/video-js/blob/master/docs/api.md 
+https://github.com/zencoder/video-js/blob/master/docs/api.md
 
 
 # Previewing the app
@@ -191,7 +191,7 @@ The document was successfully checked as HTML5. This means that the resource in 
 http://validator.w3.org/check?uri=http%3A%2F%2Fpaulcasey.net%2Fclients%2Fnine%2Fnokia%2Fhtml5%2F
 
 
-# .htaccess file   
+# .htaccess file
 
 Meta tags containing X-UA-Compatible do not pass strict validation. `index.html` contains the following line
 
