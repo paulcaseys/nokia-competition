@@ -78,7 +78,7 @@ requirejs.config({
         'cosmosimageloader':    'resources/js/libs/cosmos/cosmos-image-loader.1.01',
         
         // cosmos data (rapid form and data service)
-        'cosmosdata':    'resources/js/libs/cosmos/cosmos-data.1.01',
+        'cosmosdata':    'resources/js/libs/cosmos/cosmos-data.1.01.min',
         
 		// foundation
         'foundation': 			'resources/js/libs/foundation',
