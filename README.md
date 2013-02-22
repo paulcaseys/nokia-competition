@@ -181,7 +181,7 @@ To create your first project using our Compass extension, you'll need to have th
 # Compiling the app javascript into one file
 To compile the javascript, you must have `node`, `uglify.js` and `r.js` installed.
 
-## Installing frameworks
+## Installing compile frameworks
 
 1. Install node from http://nodejs.org/download/ and follow the prompts
 
