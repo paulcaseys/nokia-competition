@@ -181,18 +181,16 @@ To create your first project using our Compass extension, you'll need to have th
 # Compiling the app javascript into one file
 To compile the javascript, you must have `node`, `uglify.js` and `r.js` installed.
 
-1. Install node from
-http://nodejs.org/download/
-Follow the prompts
+1. Install node from http://nodejs.org/download/ and follow the prompts
 
 2. Add the correct path (using terminal)
-        export "PATH=$PATH:/usr/local/bin"
+`export "PATH=$PATH:/usr/local/bin"`
 
 3. Install uglify
-        sudo npm -g install uglify-js
+`sudo npm -g install uglify-js`
 
 4. install r.js
-        sudo npm install -g requirejs
+`sudo npm install -g requirejs`
 
 More r.js details can be found at: https://github.com/jrburke/r.js/)
 
