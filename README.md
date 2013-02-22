@@ -178,6 +178,37 @@ To create your first project using our Compass extension, you'll need to have th
 
     sudo gem install zurb-foundation
 
+# Compiling the app javascript into one file
+To compile the javascript, you must have `node`, `uglify.js` and `r.js` installed.
+
+1. Install node from
+http://nodejs.org/download/
+Follow the prompts
+
+2. Add the correct path (using terminal)
+        export "PATH=$PATH:/usr/local/bin"
+
+3. Install uglify
+        sudo npm -g install uglify-js
+
+4. install r.js
+        sudo npm install -g requirejs
+
+More r.js details can be found at: https://github.com/jrburke/r.js/)
+
+If you have not used r.js before, a good resource to learn can be found at:
+http://www.svlada.com/blog/2012/07/02/require-js-optimization-part2/#t0
+
+--------
+
+Now you have everything installed, ready to compile the JavaScript!
+
+        r.js -o build-compiles-javascript.js
+
+This will compile everything listed in the `resources/js/app/AppConfig.js` inside `require(['file1', 'file2', 'etc'])`
+
+It will compile and minify the file into `resources/js/compiled/AppConfig.min.js`
+
 
 # Browser compatibility
 

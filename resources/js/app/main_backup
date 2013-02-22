@@ -1,11 +1,4 @@
-
-/**
- * Filename: js/build/AppConfig
- *
- * defines the app paths and initialises the app
- *
- */
-//
+/*jslint browser: true, devel: true */
 
 // APP STRUCTURE
 // defines the app structure
@@ -15,43 +8,12 @@ App.Models = {};
 App.Collections = {};
 App.Data = {};
 
+(function () {
+    'use strict';
 
-// DATA SERVICES
-// define data service paths
-App.Data.GalleryData = 'resources/data/GalleryData.json' + '?ver=' + ((new Date()).getTime());
-
-
-// CONSOLE FIX
-// Avoid `console` errors in browsers that lack a console (from html5 boilerplate)
-(function() {
-    var method;
-    var noop = function noop() {};
-    var methods = [
-        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-        'timeStamp', 'trace', 'warn'
-    ];
-    var length = methods.length;
-    var console = (window.console = window.console || {});
-
-    while (length--) {
-        method = methods[length];
-
-        // Only stub undefined methods.
-        if (!console[method]) {
-            console[method] = noop;
-        }
-    }
-}());
-
-
-
-// APP CONFIG
-requirejs.config({
-
-    // defines paths that are used across the app
-    paths: {
+    requirejs.config({
+        baseUrl: ".",
+        paths: {
 
         // paths to common libraries
         'jquery':       'resources/js/libs/jquery/jquery-min',
@@ -97,38 +59,38 @@ requirejs.config({
         'prism':        'resources/js/libs/prism/prism',
 
         // paths to app initialiser
-        'AppInit':                              'resources/js/build/AppInit',
+        'AppInit':                              'resources/js/app/AppInit',
 
         // paths to app router (routes hash URIs)
-        'App.Router':                       'resources/js/build/Router',
+        'App.Router':                       'resources/js/app/Router',
 
         // paths to the config model (for constants)
-        'App.Models.ConfigModel':           'resources/js/build/models/ConfigModel',
+        'App.Models.ConfigModel':           'resources/js/app/models/ConfigModel',
 
         // paths to state PAGE/PANEL model (tells which state to transition to)
-        'App.Models.StateModel':            'resources/js/build/models/StateModel',
+        'App.Models.StateModel':            'resources/js/app/models/StateModel',
 
         // paths to state MENU model (tells which menu item to select)
-        'App.Models.StateMenuModel':            'resources/js/build/models/StateMenuModel',
+        'App.Models.StateMenuModel':            'resources/js/app/models/StateMenuModel',
 
         // paths to views
-        'App.Views.HomePageView':           'resources/js/build/views/HomePageView',
-        'App.Views.HomePanelView':          'resources/js/build/views/HomePanelView',
-        'App.Views.WinPageView':            'resources/js/build/views/WinPageView',
-        'App.Views.FeaturesPageView':       'resources/js/build/views/FeaturesPageView',
-        'App.Views.FeaturesPanelView':      'resources/js/build/views/FeaturesPanelView',
-        'App.Views.VideoPageView':          'resources/js/build/views/VideoPageView',
-        'App.Views.VideoPanelView':         'resources/js/build/views/VideoPanelView',
-        'App.Views.FooterPanelView':        'resources/js/build/views/FooterPanelView',
-        'App.Views.ImageNavPanelView':      'resources/js/build/views/ImageNavPanelView',
+        'App.Views.HomePageView':           'resources/js/app/views/HomePageView',
+        'App.Views.HomePanelView':          'resources/js/app/views/HomePanelView',
+        'App.Views.WinPageView':            'resources/js/app/views/WinPageView',
+        'App.Views.FeaturesPageView':       'resources/js/app/views/FeaturesPageView',
+        'App.Views.FeaturesPanelView':      'resources/js/app/views/FeaturesPanelView',
+        'App.Views.VideoPageView':          'resources/js/app/views/VideoPageView',
+        'App.Views.VideoPanelView':         'resources/js/app/views/VideoPanelView',
+        'App.Views.FooterPanelView':        'resources/js/app/views/FooterPanelView',
+        'App.Views.ImageNavPanelView':      'resources/js/app/views/ImageNavPanelView',
 
         // paths to collections
-        'App.Collections.FeaturesCollection':   'resources/js/build/collections/FeaturesCollection',
+        'App.Collections.FeaturesCollection':   'resources/js/app/collections/FeaturesCollection',
 
         // paths to models
-        //'App.Models.ExampleModel':            'resources/js/build/models/ExampleModel'
-        'App.Models.PeopleModel':           'resources/js/build/models/PeopleModel',
-        'App.Models.FeaturesModel':         'resources/js/build/models/FeaturesModel'
+        //'App.Models.ExampleModel':            'resources/js/app/models/ExampleModel'
+        'App.Models.PeopleModel':           'resources/js/app/models/PeopleModel',
+        'App.Models.FeaturesModel':         'resources/js/app/models/FeaturesModel'
 
     },
 
@@ -198,14 +160,26 @@ requirejs.config({
 
 requirejs([
 
-    // Load our app module and pass it to our definition function
-    'AppInit'
 
+        "AppInit"  // app lib modules
+        ],
+        function () {
 
-], function(AppInit){
-    // dependencies are now loaded
-    // initialises app
-    AppInit.initialize();
+            var $ = require("jquery"),
+            // the startmodule is defined on the same script tag of data-main.
+            // example: <script data-main="main.js" data-start="pagemodule/main" src="vendor/require.js"/>
+                startModuleName = $("script[data-main][data-start]").attr("data-start");
 
+            if (startModuleName) {
 
-});
+                console.log(startModuleName);
+                require([startModuleName], function (startModule) {
+                    console.log('hi');
+                    $(function () {
+                        var fn = $.isFunction(startModule) ? startModule : startModule.initialize;
+                        if (fn) { fn(); }
+                    });
+                });
+            }
+        });
+} ());

@@ -1,8 +1,0 @@
-/**
- * Filename: js/app/views/FeaturesPanelView
- *
- * initialises the view
- * 
- */// 
-// require js: defines the required js libraries and app files
-define(["jquery","underscore","backbone"],function(e,t,n){var r=n.View.extend({el:e("#features-panel-1"),id:null,initialize:function(){e(this.el).hide();this.on("testCall",this.testMethod,this)},testMethod:function(e){console.log("FeaturesPanelView testMethod")},transitionIn:function(){this.addEventListeners();e(this.el).show();e("#features-panel-"+(this.id+1)+" .image-target").show();e("#features-panel-"+(this.id+1)+" .content-target").show();TweenLite.from(e("#features-panel-"+(this.id+1)+" .image-target"),1,{css:{alpha:0},delay:1,ease:Power2.easeOut});TweenLite.from(e("#features-panel-"+(this.id+1)+" .content-target"),1,{css:{alpha:0},delay:1,ease:Power2.easeOut});if(App.Collections.FeaturesCollection.dataLoaded){e("#features-page #features-panel-"+(this.id+1)+" .image-target").html("");var t=App.Collections.FeaturesCollection.dataLoaded[this.id],n=new Cosmos.Utils.ImageLoaderWithRescaleSlideShow("#features-page #features-panel-"+(this.id+1)+" .image-target",[{img:t.uploaded_images[0].uploaded_image_path_original}],1e3,1e3,"rescaleDisnabled","centreEnabled","elementResizeListenerDisabled")}},transitionOut:function(){this.removeEventListeners();e(this.el).hide()},addEventListeners:function(){},removeEventListeners:function(){}});return r});

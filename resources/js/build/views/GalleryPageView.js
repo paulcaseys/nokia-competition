@@ -1,8 +1,0 @@
-/**
- * Filename: js/app/views/GalleryPageView
- *
- * initialises the view
- * 
- */// 
-// require js: defines the required js libraries and app files
-define(["jquery","underscore","backbone","cosmosimageloader","App.Models.GalleryModel"],function(e,t,n,r,i){var s=n.View.extend({el:e("#gallery-page"),galleryItemsTarget:e("#gallery-items-target"),initialize:function(){e(this.el).hide();this.on("testCall",this.testMethod,this)},onDataLoadComplete:function(e,t){App.Views.GalleryPageView.galleryItemsTarget.html("");for(var n=0;n<t.length;n++){t[n].id=n;App.Views.GalleryPageView.createItem(t[n])}},createItem:function(e){this.galleryItemsTarget.append('<div class="four columns"><div class="panel"><a href="'+e.detail_Gen1+'" target="_blank"> <h6>'+e.page_title+'</h6><div class="image-target-image-container image-loader-target-'+e.id+'"></div></a></div></div>');var t=new Cosmos.Utils.ImageLoaderWithRescaleSlideShow(".image-loader-target-"+e.id,[{img:e.page_image_url}],1e3,1e3,"rescaleEnabled","centreEnabled","elementResizeListenerEnabled")},testMethod:function(e){console.log("GalleryPageView testMethod")},transitionIn:function(){this.addEventListeners();e(this.el).show();this.galleryItemsTarget.html('<div class="four columns"><br>Loading...</div>');var t=new i;t.url="http://cosmos.is/api/service/data/format/jsonp/?project_name=SummerAtTarget&project_password=6CB4816A23A965B5DFD58E45F4C23&table=unique_references&batch=1&batchSize=6&whereConditionArray=project_id||9&select=*&orderBy=vote_count||desc&callback=?";t.type="GET";t.dataType="jsonp";t.fetch({success:this.onDataLoadComplete})},transitionOut:function(){this.removeEventListeners();e(this.el).hide()},addEventListeners:function(){},removeEventListeners:function(){}});return s});

@@ -1,8 +1,0 @@
-/**
- * Filename: js/app/views/SidemenuPageView
- *
- * initialises the view
- * 
- */// 
-// require js: defines the required js libraries and app files
-define(["jquery","underscore","backbone","App.Models.StateMenuModel","waypoints","fixie","jquery.easing","foundationtopbar","foundationapp","tweenlite"],function(e,t,n,r){var i=n.View.extend({el:e("#sidemenu-page"),initialize:function(){e(this.el).hide();this.on("testCall",this.testMethod,this);App.Models.SidemenuPageStateMenuModel=new r},testMethod:function(e){console.log("SidemenuPageView testMethod")},scrollTo:function(t){var n=App.Models.ConfigModel.scrollToOffset,r="html, body";$target=e("*[data-value='"+t+"']");if($target.length===0)console.log("ERROR: could not find element: [data-value="+t+"]");else{var i=$target.offset().top-n;e(r).stop().animate({scrollTop:i},600,"easeInOutCirc",function(){})}},transitionIn:function(){this.addEventListeners();e(this.el).show()},transitionOut:function(){this.removeEventListeners();e(this.el).hide()},addEventListeners:function(){function n(){t.scrollTo("signup")}function r(){if(e(this).data("clickvalue")){var t=e(this).data("clickvalue");App.Views.SidemenuPageView.scrollTo(t);App.Router.navigate("/sidemenu/"+t,{trigger:!1})}e("#sidemenu-page .expanded").removeClass("expanded")}var t=this;e("#sidemenu-page .signup").on("click",App.Models.ConfigModel.eventObj,n);e("#sidemenu-page .sidemenu-wrapper a").on("click",App.Models.ConfigModel.eventObj,r)},removeEventListeners:function(){e("#parallax-page .submenu-wrapper a").off();if(App.Models.ConfigModel.touch===!0)var t=null;else{e("#parallax-page .waypoint-section").waypoint("destroy");e("#parallax-page .submenu-module").waypoint("destroy");e("#parallax-page .submenu-wrapper").waypoint("destroy")}}});return i});

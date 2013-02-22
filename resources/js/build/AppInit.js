@@ -1,8 +1,0 @@
-/**
- * Filename: js/app/AppInit
- *
- * initialises the views
- * 
- */// 
-// require js: defines the required js libraries and app files
-define(["jquery","underscore","backbone","App.Router","App.Models.ConfigModel","App.Models.StateModel","App.Models.StateMenuModel","App.Models.PeopleModel","App.Models.FeaturesModel","App.Collections.FeaturesCollection","App.Views.HomePageView","App.Views.WinPageView","App.Views.FeaturesPageView","App.Views.VideoPageView","App.Views.FooterPanelView","App.Views.ImageNavPanelView"],function(e,t,n,r,i,s,o,u,a,f,l,c,h,p,d,v){var m=function(){App.Models.ConfigModel=new i;App.Models.PageStateModel=new s;App.Models.PageStateMenuModel=new o;App.Models.PeopleModel=new u;App.Models.FeaturesModel=new a;App.Collections.FeaturesCollection=new f;App.Views.HomePageView=new l;App.Views.WinPageView=new c;App.Views.FeaturesPageView=new h;App.Views.VideoPageView=new p;App.Views.FooterPanelView=new d;App.Views.ImageNavPanelView=new v;App.Views.HomePageView.trigger("testCall");App.Views.WinPageView.trigger("testCall");App.Views.FeaturesPageView.trigger("testCall");App.Views.VideoPageView.trigger("testCall");App.Views.FooterPanelView.trigger("testCall");App.Views.ImageNavPanelView.trigger("testCall");App.Views.FooterPanelView.trigger("transitionInCall");App.Views.ImageNavPanelView.trigger("transitionInCall");r.initialize();App.Collections.FeaturesCollection.loadLatest();e("#loading-page").length>0&&e("#loading-page").remove()};return{initialize:m}});

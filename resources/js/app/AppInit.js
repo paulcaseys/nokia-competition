@@ -3,9 +3,9 @@
  * Filename: js/app/AppInit
  *
  * initialises the views
- * 
+ *
  */
-// 
+//
 
 
 // require js: defines the required js libraries and app files
@@ -43,14 +43,14 @@ define([
 ], function($, _, Backbone, Router, ConfigModel, StateModel, StateMenuModel, PeopleModel, FeaturesModel, FeaturesCollection, HomePageView, WinPageView, FeaturesPageView, VideoPageView, FooterPanelView, ImageNavPanelView){
 
 
-    
+
 
     // initialises various  app views
     var initialize = function(){
 
       // initialises the app configuration (eg: App.Models.ConfigModel.browserRatioNum)
       App.Models.ConfigModel = new ConfigModel();
-      
+
       // initialises the state controller
       App.Models.PageStateModel = new StateModel();
 
@@ -78,7 +78,7 @@ define([
       App.Views.WinPageView.trigger("testCall");
       App.Views.FeaturesPageView.trigger("testCall");
       App.Views.VideoPageView.trigger("testCall");
-      App.Views.FooterPanelView.trigger("testCall");      
+      App.Views.FooterPanelView.trigger("testCall");
       App.Views.ImageNavPanelView.trigger("testCall");
 
       App.Views.FooterPanelView.trigger("transitionInCall");
@@ -86,7 +86,7 @@ define([
 
       // initialises the router
       Router.initialize();
-      
+
       //loads the collection
       App.Collections.FeaturesCollection.loadLatest();
 
@@ -95,12 +95,12 @@ define([
         $("#loading-page").remove();
       }
 
-      
+
 
     };
-  
 
-    
+
+
 
     // require js: defines function/s to be accessed by require js
     return {
