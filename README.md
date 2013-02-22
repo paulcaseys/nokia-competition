@@ -201,7 +201,7 @@ http://www.svlada.com/blog/2012/07/02/require-js-optimization-part2/#t0
 
 Now you have everything installed, ready to compile the JavaScript!
 
-## Compiling
+## Compiling and minifying
 One simple command
 
 `r.js -o build-compiles-javascript.js`
