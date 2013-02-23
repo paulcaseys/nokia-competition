@@ -60,7 +60,7 @@ define([
       // initialises the people details
       App.Models.PeopleModel = new PeopleModel();
 
-      // initialises the people details
+      // initialises the feature details
       App.Models.FeaturesModel = new FeaturesModel();
       App.Collections.FeaturesCollection = new FeaturesCollection();
 
