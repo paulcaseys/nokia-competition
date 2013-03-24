@@ -178,6 +178,29 @@ To create your first project using our Compass extension, you'll need to have th
 
     sudo gem install zurb-foundation
 
+you will also need to use install an old foundation gem
+
+    gem install zurb-foundation --version 3.2.5
+
+you can test which versions of foundation you have installed by running
+
+    gem list
+
+note that a `Gemfile` exists in your project root. this file informs the project which version of zurb foundation to reference. more information can be found at http://stackoverflow.com/questions/15175775/how-can-i-specify-framework-version-in-compass-create
+
+# Compiling css with compass
+
+You may be used to simply running compass with
+
+    compass watch
+
+this method will still work if you only have one version of zurb foundation installed,
+
+however, if you have multiple versions, you should run the following command
+
+    bundle exec compass watch
+
+
 # Compiling the app javascript into one file
 To compile the javascript, you must have `node`, `uglify.js` and `r.js` installed.
 
