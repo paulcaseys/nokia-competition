@@ -42,22 +42,22 @@ if (!window.Cosmos.Project) {
 if (!window.Cosmos.Config) {
     window.Cosmos.Config = {};
     window.Cosmos.Config.ReferenceDataArray = ['detail_MessageId', 'detail_ImageFile', 'detail_ImageDescription', 'detail_DateReceived', 'detail_Name', 'detail_FirstName', 'detail_LastName', 'detail_HomePhoneNumber', 'detail_EmailAddress', 'detail_Address', 'detail_Address2', 'detail_Suburb', 'detail_Postcode', 'detail_State', 'detail_Country', 'detail_DateOfBirth', 'detail_Gen1', 'detail_Gen2', 'detail_Gen3', 'detail_Gen4', 'detail_Gen5', 'detail_Gen6', 'detail_Gen7', 'detail_Gen8', 'detail_Gen9', 'detail_Gen10', 'page_title', 'page_summary', 'page_body_text', 'page_image_url'];
-    window.Cosmos.Config.ServiceUrl = "http://cosmos.is:81/api/service/";
-    window.Cosmos.Config.FormModuleUrl = "http://cosmos.is:81/form/module/";
+    window.Cosmos.Config.ServiceUrl = "http://cosmosis-api.com:81/api/service/";
+    window.Cosmos.Config.FormModuleUrl = "http://cosmosis-api.com:81/form/module/";
 }
 
 $(document).ready(function(){
-    
+
     // custom javascript for this project
-    
+
     //FB.init({ appId: '172209399504725', status: true, cookie: true, xfbml: true });
-    
-    
-    
+
+
+
     //
     //Cosmos.Data.initialiseSomething();
-    
-    
+
+
 });
 
 Cosmos.Data.store = (function() {
@@ -100,7 +100,7 @@ Cosmos.Data.newForm = function() {
         this._debugMode =        debugMode;
     };
 
-    
+
     this.defineModuleName = function(moduleName) {
         this._moduleName =      moduleName;
     };
@@ -108,14 +108,14 @@ Cosmos.Data.newForm = function() {
     this.defineModuleAsEditor = function(moduleName) {
         this._editorModule = true;
     };
-    
+
     this.setupForm = function(cosmosFormWrapper, varObj) {
 
         var me = this;
 
         varObj = typeof varObj !== 'undefined' ? varObj : {};
-        
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success'); 
+
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
 
         var additionalAttributes = "";
         if(this._editorModule){
@@ -166,7 +166,7 @@ Cosmos.Data.ImageUploader = function() {
     this._fileUpload.success = false;
     this._fileUpload.uploaded_image_id = "";
 
-    this._imageRescaleStyle = ""; 
+    this._imageRescaleStyle = "";
     this._imageFrameColor = "";
     this._changeFileButtonHtml = "";
 
@@ -187,7 +187,7 @@ Cosmos.Data.ImageUploader = function() {
     this.defineModuleConfigObject = function(moduleConfigObject) {
         this._moduleConfigObject =      moduleConfigObject;
     };
-    
+
 
 
     /**
@@ -198,11 +198,11 @@ Cosmos.Data.ImageUploader = function() {
      */
     this.initAllUploadImageForms = function(imageUploadWrapper, varObj) {
 
-        imageUploadFormWrapper = imageUploadWrapper+' .cosmos-file-upload-form-wrapper .upload-image-form';        
+        imageUploadFormWrapper = imageUploadWrapper+' .cosmos-file-upload-form-wrapper .upload-image-form';
         this._imageUploadWrapper = imageUploadWrapper;
 
         // checks if the item has an upload file element
-        var uploadFiles = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.uploadFiles');         
+        var uploadFiles = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.uploadFiles');
         if(uploadFiles){
 
             // ALLOWS UPLOAD FILES
@@ -228,7 +228,7 @@ Cosmos.Data.ImageUploader = function() {
                     newModule.defineModuleConfigObject(this._moduleConfigObject);
                     newModule.defineProjectSettings(this._projectName, this._projectPassword, true);
                     newModule.initUploadImageForm(imageUploadWrapper, newImageUploadFormWrapperString, varObj);
-                    
+
                     this._imageUploadFormArray.push(newModule);
 
                     // hides it if it isn't the first uploader
@@ -240,19 +240,19 @@ Cosmos.Data.ImageUploader = function() {
                     if(i === max-1){
                         $(imageUploadFormWrapper).remove();
                     }
-                    
+
                 }
-            } 
-            
+            }
+
         } else {
             // DOES NOT ALLOW FILE UPLOADS
             // removes the upload html
             if($(imageUploadFormWrapper)){
                 $(imageUploadFormWrapper).remove();
             }
-            
+
         }
-        
+
     };
 
     this.updateAllImageForms = function(updateModuleConfigObject) {
@@ -266,17 +266,17 @@ Cosmos.Data.ImageUploader = function() {
         if(imageFields !== ""){
             for (var j=0, maxj=imageFields.length; j < maxj; j++) {
 
-                var thumbnailImage =            Cosmos.Data.Traverse(imageFields[j], 'thumbnailImage'); 
-                var uploaded_image_id =         Cosmos.Data.Traverse(imageFields[j], 'uploaded_image_id'); 
-                var uploaded_image_caption =    Cosmos.Data.Traverse(imageFields[j], 'uploaded_image_caption'); 
-                var uploaded_image_source =     Cosmos.Data.Traverse(imageFields[j], 'uploaded_image_source'); 
+                var thumbnailImage =            Cosmos.Data.Traverse(imageFields[j], 'thumbnailImage');
+                var uploaded_image_id =         Cosmos.Data.Traverse(imageFields[j], 'uploaded_image_id');
+                var uploaded_image_caption =    Cosmos.Data.Traverse(imageFields[j], 'uploaded_image_caption');
+                var uploaded_image_source =     Cosmos.Data.Traverse(imageFields[j], 'uploaded_image_source');
 
                 this._imageUploadFormArray[j].addImageElement(thumbnailImage, uploaded_image_id, uploaded_image_caption, uploaded_image_source);
 
                 if(j > maxj-2){
-                    $(this._imageUploadFormArray[j]._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').show(); 
+                    $(this._imageUploadFormArray[j]._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').show();
                 }
-                
+
 
             }
         }
@@ -290,11 +290,11 @@ Cosmos.Data.ImageUploader = function() {
             this._imageUploadFormArray[i].deleteImageInstance();
             $(this._imageUploadFormArray[i]._imageUploadFormWrapper).hide();
         }
-        
+
         if(this._imageUploadFormArray.length > 0){
             $(this._imageUploadFormArray[0]._imageUploadFormWrapper).show();
         }
-        
+
 
     };
 
@@ -306,38 +306,38 @@ Cosmos.Data.ImageUploader = function() {
      * @param   varObj: this defines callback events for onComplete and success.
      */
     this.initUploadImageForm = function(imageUploadWrapper, imageUploadFormWrapper, varObj) {
-        
+
         this._imageUploadWrapper = imageUploadWrapper;
         this._imageUploadFormWrapper = imageUploadFormWrapper;
         this._varObj = varObj;
 
         varObj = typeof varObj !== 'undefined' ? varObj : {};
-        
-        
-        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string'); 
+
+
+        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string');
         if(varObj.external_reference_string === ""){
             varObj.external_reference_string = "autoincrement";
         }
 
-        varObj.complete = Cosmos.Data.Traverse(varObj, 'complete'); 
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success'); 
-        varObj.progress = Cosmos.Data.Traverse(varObj, 'progress'); 
-        varObj.nextImageUploadFormWrapper = Cosmos.Data.Traverse(varObj, 'nextImageUploadFormWrapper'); 
-        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit'); 
+        varObj.complete = Cosmos.Data.Traverse(varObj, 'complete');
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
+        varObj.progress = Cosmos.Data.Traverse(varObj, 'progress');
+        varObj.nextImageUploadFormWrapper = Cosmos.Data.Traverse(varObj, 'nextImageUploadFormWrapper');
+        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit');
 
         var fileUploadInputFields = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.fileUploadInputFields');
         var varObjNextImageUploadFormWrapper = varObj.nextImageUploadFormWrapper;
-        
-        this._changeFileButtonHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.changeFileButtonHtml'); 
-        this._imageRescaleStyle = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.imageRescaleStyle'); 
-        this._imageFrameColor = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.imageFrameColor'); 
+
+        this._changeFileButtonHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.changeFileButtonHtml');
+        this._imageRescaleStyle = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.imageRescaleStyle');
+        this._imageFrameColor = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.imageFrameColor');
 
         var me = this;
 
-        
+
         var ajaxOptions = {
 
-            // dataType identifies the expected content type of the server response 
+            // dataType identifies the expected content type of the server response
             dataType:  'xml',
 
             success: function(xhr) {
@@ -367,7 +367,7 @@ Cosmos.Data.ImageUploader = function() {
                 if(varObj.complete !== ''){
                     varObj.complete(xhr, me._imageUploadFormWrapper);
                 }
-                
+
             },
             beforeSubmit: function() {
                 // public variable declaring the image progress
@@ -379,15 +379,15 @@ Cosmos.Data.ImageUploader = function() {
                 $(me._imageUploadFormWrapper+' .cosmos-file-upload-delete-wrapper').hide();
 
                 if(fileUploadInputFields !== ""){
-                    $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').show();                   
+                    $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').show();
                 }
                 if(varObj.beforeSubmit !== ''){
                     varObj.beforeSubmit(me._imageUploadFormWrapper);
                 }
 
                 if($(varObjNextImageUploadFormWrapper).length !== 0){
-                    $(me._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').show(); 
-                }  
+                    $(me._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').show();
+                }
             },
             uploadProgress: function(event, position, total, percentComplete) {
                 if(varObj.progress !== ''){
@@ -399,12 +399,12 @@ Cosmos.Data.ImageUploader = function() {
                     $(me._imageUploadFormWrapper+' .cosmos-file-upload-finalizing-wrapper').show();
                     $(me._imageUploadFormWrapper+' .cosmos-file-upload-progressbar-wrapper').hide();
                 }
-                
+
             }
 
         };
         // sets up the form as an ajax form
-        $(me._imageUploadFormWrapper).ajaxForm(ajaxOptions); 
+        $(me._imageUploadFormWrapper).ajaxForm(ajaxOptions);
 
         // adds external reference details
         $('<input>').attr({
@@ -412,7 +412,7 @@ Cosmos.Data.ImageUploader = function() {
             name: 'external_reference_string',
             value: varObj.external_reference_string
         }).appendTo(me._imageUploadFormWrapper);
-        
+
         // adds project details
         $('<input>').attr({
             type: 'hidden',
@@ -437,14 +437,14 @@ Cosmos.Data.ImageUploader = function() {
         }).appendTo(me._imageUploadFormWrapper);
 
 
-        $(me._imageUploadFormWrapper+' input[name="filedata"]').change(function() { 
+        $(me._imageUploadFormWrapper+' input[name="filedata"]').change(function() {
             // checks if the value was changed to ""
             if($(this).val() !== ""){
                 // VALUE IS NOT ""
                 // submit form
-                $(me._imageUploadFormWrapper).ajaxSubmit(ajaxOptions); 
+                $(me._imageUploadFormWrapper).ajaxSubmit(ajaxOptions);
             }
-            
+
         });
 
 
@@ -454,44 +454,44 @@ Cosmos.Data.ImageUploader = function() {
 
 
         // resets the file field so users can select the same image twice
-        $(me._imageUploadFormWrapper+' .cosmos-file-upload-buttonbar-wrapper').bind('click', function() { 
+        $(me._imageUploadFormWrapper+' .cosmos-file-upload-buttonbar-wrapper').bind('click', function() {
             // clears the value so the same file could be attached again
-            me.deleteImageInstance();          
+            me.deleteImageInstance();
         });
 
 
         // deletes the file field so users can select the same image twice
-        $(me._imageUploadFormWrapper+' .cosmos-file-upload-delete-button').bind('click', function() { 
-            // clears the value so the same file could be attached again  
+        $(me._imageUploadFormWrapper+' .cosmos-file-upload-delete-button').bind('click', function() {
+            // clears the value so the same file could be attached again
             me.deleteImageInstance();
         });
 
         // attaches another image when button clicked
         $(me._imageUploadFormWrapper+" .cosmos-file-attach-another-button").bind("click", function() {
             $(me._imageUploadFormWrapper+" .cosmos-file-attach-another-wrapper").hide();
-            if($(varObjNextImageUploadFormWrapper).length !== 0){                
+            if($(varObjNextImageUploadFormWrapper).length !== 0){
                 $(varObjNextImageUploadFormWrapper).show();
             }
-            
+
         });
-        
+
 
 
         me.defineUploadButtonText();
 
-        
+
         var uploadFileTitleHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.uploadFileTitleHtml');
         if(uploadFileTitleHtml !== ""){
             $(this._imageUploadWrapper+' .cosmos-file-upload-title').html(uploadFileTitleHtml);
-        }    
+        }
         var uploadFileIntroductionHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.uploadFileIntroductionHtml');
         if(uploadFileIntroductionHtml !== ""){
             $(this._imageUploadWrapper+' .cosmos-file-upload-introduction').html(uploadFileIntroductionHtml);
-        }   
+        }
         var uploadFileFinalizingHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.uploadFileFinalizingHtml');
         if(uploadFileFinalizingHtml !== ""){
             $(this._imageUploadWrapper+' .cosmos-file-upload-finalizing-wrapper').html(uploadFileFinalizingHtml);
-        }  
+        }
         var attachAnotherFileButtonHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.attachAnotherFileButtonHtml');
         if(attachAnotherFileButtonHtml !== ""){
             $(this._imageUploadWrapper+' .cosmos-file-attach-another-button').html(attachAnotherFileButtonHtml);
@@ -503,11 +503,11 @@ Cosmos.Data.ImageUploader = function() {
 
 
         $(me._imageUploadFormWrapper+' .cosmos-file-upload-progressbar-wrapper').hide();
-        $(me._imageUploadFormWrapper+' .cosmos-file-upload-delete-wrapper').hide(); 
-        $(me._imageUploadFormWrapper+' .cosmos-file-upload-finalizing-wrapper').hide(); 
+        $(me._imageUploadFormWrapper+' .cosmos-file-upload-delete-wrapper').hide();
+        $(me._imageUploadFormWrapper+' .cosmos-file-upload-finalizing-wrapper').hide();
         var progressiveTextAttributes = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.progressiveTextAttributes');
-        if(!$.browser.msie && progressiveTextAttributes === true) $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').hide(); 
-        $(me._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').hide(); 
+        if(!$.browser.msie && progressiveTextAttributes === true) $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').hide();
+        $(me._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').hide();
 
 
         // ADDS ALL THE FIELDS TO THE FILE UPLOAD ELEMENT
@@ -526,15 +526,15 @@ Cosmos.Data.ImageUploader = function() {
 
     // reconfigures styles to begin with
     this.deleteImageInstance = function () {
-            
+
         var me = this;
 
         $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper input').not(':button, :submit, :reset, :hidden').val('');
-        
-        $(me._imageUploadFormWrapper+' #file').val(''); 
+
+        $(me._imageUploadFormWrapper+' #file').val('');
         $(me._imageUploadFormWrapper+' .cosmos-file-upload-delete-wrapper').hide();
-        $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').hide(); 
-        $(me._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').hide(); 
+        $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').hide();
+        $(me._imageUploadFormWrapper+' .cosmos-file-attach-another-wrapper').hide();
 
 
         $(me._imageUploadFormWrapper+' .cosmos-file-change-button-text').addClass('cosmos-file-upload-button');
@@ -572,7 +572,7 @@ Cosmos.Data.ImageUploader = function() {
         // public variable declaring the image progress
         me._fileUpload.begun = true;
         me._fileUpload.success = true;
-        
+
         // upload button text
         $(me._imageUploadFormWrapper+' .cosmos-file-upload-progressbar-wrapper').hide();
         $(me._imageUploadFormWrapper+' .cosmos-file-upload-buttonbar-wrapper').show();
@@ -581,7 +581,7 @@ Cosmos.Data.ImageUploader = function() {
 
         var fileUploadInputFields = Cosmos.Data.Traverse(this._moduleConfigObject, 'fileUploadModule.fileUploadInputFields');
         if(fileUploadInputFields !== ""){
-            $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').show(); 
+            $(me._imageUploadFormWrapper+' .cosmos-file-upload-text-attributes-wrapper').show();
         }
 
         if(me._changeFileButtonHtml !== ""){
@@ -589,9 +589,9 @@ Cosmos.Data.ImageUploader = function() {
         }
         $(me._imageUploadFormWrapper+' .cosmos-file-upload-button').addClass('cosmos-file-change-button-text');
         $(me._imageUploadFormWrapper+' .cosmos-file-upload-button').removeClass('cosmos-file-upload-button');
-        
+
         var _il = new Cosmos.Utils.ImageLoaderWithRescaleSlideShow(me._imageUploadFormWrapper+' .cosmos-image-placeholder', [{"img":thumbnailImage, "background-color":me._imageFrameColor}], 200, 200, me._imageRescaleStyle, "centreEnabled", "elementResizeListenerDisabled");
-        
+
         if($(me._imageUploadFormWrapper+' input[name="uploaded_image_caption"]').length && uploaded_image_caption !== ""){
             $(me._imageUploadFormWrapper+' input[name="uploaded_image_caption"]').val(uploaded_image_caption);
         }
@@ -641,32 +641,32 @@ Cosmos.Data.ImageUploader = function() {
 
     /////////////////////////
     // UPDATES THE DATABASE
-    // 
-    
-    
+    //
+
+
     this.update = function(varObj) {
 
         me = this;
 
-        varObj = typeof varObj !== 'undefined' ? varObj : {};        
-        
-        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string'); 
+        varObj = typeof varObj !== 'undefined' ? varObj : {};
+
+        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string');
         if(varObj.external_reference_string !== ""){
             $(this._imageUploadFormWrapper+' input[name="external_reference_string"]').val(varObj.external_reference_string);
         }
-        
-        
-        
+
+
+
         varObj.external_reference_string = $(this._imageUploadFormWrapper+' input[name="external_reference_string"]').val();
-        varObj.unique_reference_id = Cosmos.Data.Traverse(varObj, 'unique_reference_id'); 
-        varObj.uploaded_image_id = me._fileUpload.uploaded_image_id; 
+        varObj.unique_reference_id = Cosmos.Data.Traverse(varObj, 'unique_reference_id');
+        varObj.uploaded_image_id = me._fileUpload.uploaded_image_id;
         varObj.uploaded_image_caption = $(this._imageUploadFormWrapper+' input[name="uploaded_image_caption"]').val();
         varObj.uploaded_image_source = $(this._imageUploadFormWrapper+' input[name="uploaded_image_source"]').val();
-        
 
-        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit'); 
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success');  
-        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType'); 
+
+        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit');
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
+        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType');
 
         if(varObj.dataType === ""){
             varObj.dataType = "json";
@@ -684,7 +684,7 @@ Cosmos.Data.ImageUploader = function() {
         dataObj.uploaded_image_caption = varObj.uploaded_image_caption;
         dataObj.uploaded_image_source = varObj.uploaded_image_source;
 
-        
+
         if(varObj.beforeSubmit !== ''){
             varObj.beforeSubmit(dataObj);
         }
@@ -700,7 +700,7 @@ Cosmos.Data.ImageUploader = function() {
                 if(me._debugMode) console.log(xhr);
             }
         });
-        
+
 
     };
 
@@ -768,21 +768,21 @@ Cosmos.Data.ItemForm = function() {
         this._itemWrapper = itemWrapper;
 
         varObj = typeof varObj !== 'undefined' ? varObj : {};
-        
-        
-        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string'); 
+
+
+        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string');
         /*if(varObj.external_reference_string === ""){
             varObj.externalReferenceString = "autoincrement";
         }*/
 
-        varObj.complete = Cosmos.Data.Traverse(varObj, 'complete'); 
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success'); 
-        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit'); 
+        varObj.complete = Cosmos.Data.Traverse(varObj, 'complete');
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
+        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit');
 
-        varObj.cosmosDataImageUploader = Cosmos.Data.Traverse(varObj, 'cosmosDataImageUploader'); 
+        varObj.cosmosDataImageUploader = Cosmos.Data.Traverse(varObj, 'cosmosDataImageUploader');
         this._cosmosDataImageUploader = varObj.cosmosDataImageUploader;
 
-        varObj.cosmosDataThanks = Cosmos.Data.Traverse(varObj, 'cosmosDataThanks'); 
+        varObj.cosmosDataThanks = Cosmos.Data.Traverse(varObj, 'cosmosDataThanks');
         this._cosmosDataThanks = varObj.cosmosDataThanks;
 
         this._varObj = varObj;
@@ -804,7 +804,7 @@ Cosmos.Data.ItemForm = function() {
 
                 if(varObj.cosmosDataImageUploader !== ""){
                     // IMAGE UPLOAD EXISTS
-                    
+
                     for (var i=0, max=varObj.cosmosDataImageUploader._imageUploadFormArray.length; i < max; i++) {
 
                         var tempFileUpload = varObj.cosmosDataImageUploader._imageUploadFormArray[i]._fileUpload;
@@ -854,10 +854,10 @@ Cosmos.Data.ItemForm = function() {
                 if(varObj.success !== ''){
                     varObj.success(xhr, me._itemWrapper);
                 }
-                
+
                 me._request.imagesUpdated++;
                 if(me._request.imagesUpdated === me._request.imagesRequiredToUpdate){
-                    
+
                     me.gotoThanks();
                 }
 
@@ -880,20 +880,20 @@ Cosmos.Data.ItemForm = function() {
         var itemDetailsTitleHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'itemDetailsModule.itemDetailsTitleHtml');
         if(itemDetailsTitleHtml !== ""){
             $(itemWrapper+' .cosmos-item-title').html(itemDetailsTitleHtml);
-        }    
+        }
         var itemDetailsIntroductionHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'itemDetailsModule.itemDetailsIntroductionHtml');
         if(itemDetailsIntroductionHtml !== ""){
             $(itemWrapper+' .cosmos-item-introduction').html(itemDetailsIntroductionHtml);
-        }   
+        }
         var submitItemButtonHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'itemDetailsModule.submitItemButtonHtml');
         if(submitItemButtonHtml !== ""){
             $(itemWrapper+' .cosmos-item-submit-button').html(submitItemButtonHtml);
-        }    
+        }
         var submittingItemHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'itemDetailsModule.submittingItemHtml');
         if(submitItemButtonHtml !== ""){
             $(itemWrapper+' .cosmos-item-submitting-item-wrapper').html(submittingItemHtml);
             $(itemWrapper+' .cosmos-item-submitting-item-wrapper').hide();
-        } 
+        }
 
 
         // adds external reference details
@@ -902,9 +902,9 @@ Cosmos.Data.ItemForm = function() {
                 type: 'hidden',
                 name: 'external_reference_string',
                 value: varObj.external_reference_string
-            }).appendTo(itemWrapper+" .cosmos-item-details-form-wrapper");                
+            }).appendTo(itemWrapper+" .cosmos-item-details-form-wrapper");
         //}
-        
+
         // adds project details
         $('<input>').attr({
             type: 'hidden',
@@ -942,17 +942,17 @@ Cosmos.Data.ItemForm = function() {
             } else {
                 me.submitItemData(ajaxOptions);
             }
-            
+
         });
 
 
-        
+
 
         // 'upload' button text
-        function detectIfAllFilesAreUploaded() {     
+        function detectIfAllFilesAreUploaded() {
 
-            var filesUploaded = true;       
-            
+            var filesUploaded = true;
+
             for (var i=0, max=varObj.cosmosDataImageUploader._imageUploadFormArray.length; i < max; i++) {
                 var tempFileUpload = varObj.cosmosDataImageUploader._imageUploadFormArray[i]._fileUpload;
                 //if(this._debugMode) console.log(tempFileUpload);
@@ -970,7 +970,7 @@ Cosmos.Data.ItemForm = function() {
 
             } else {
                 // FILES NOT UPLOADED YET!
-                
+
                 // try again
                 setTimeout(detectIfAllFilesAreUploaded,500);
             }
@@ -1016,8 +1016,8 @@ Cosmos.Data.ItemForm = function() {
     };
 
     this.submitItemData = function(ajaxOptions) {
-    //function submitItemData() { 
-        
+    //function submitItemData() {
+
         var me = this;
 
         var passValidation = true;
@@ -1043,14 +1043,14 @@ Cosmos.Data.ItemForm = function() {
                     if(fieldValue == ""){
                         fieldValue = " ";
                         $(fieldElement).val(" ")
-                    }       
+                    }
 
                 }
 
                 var parentElement = $(fieldElement).parents(".cosmos-field-wrapper");
                 parentElement.removeClass("cosmos-validation-error");
 
-                
+
                 if(fieldType !== "html"){
                     if(mandatoryField == true){
                         if(fieldValue == false || fieldValue === "" || fieldValue == " "){
@@ -1086,15 +1086,15 @@ Cosmos.Data.ItemForm = function() {
 
             // save
             var _cosmoDataItem = new Cosmos.Data.Item();
-            _cosmoDataItem.defineProjectSettings(me._projectName, me._projectPassword, true);           
+            _cosmoDataItem.defineProjectSettings(me._projectName, me._projectPassword, true);
             _cosmoDataItem.save(values);
         } else {
             // INVALID FORM
-            
+
             $(me._itemWrapper+' .cosmos-item-submit-wrapper').show();
             $(me._itemWrapper+' .cosmos-item-submitting-item-wrapper').hide();
         }
-        
+
 
     }
 
@@ -1123,7 +1123,7 @@ Cosmos.Data.ItemForm = function() {
             if(me._cosmosDataImageUploader){
                 me._cosmosDataImageUploader.updateAllImageForms(updateModuleConfigObject);
             }
-            
+
         }
     }
 
@@ -1133,21 +1133,21 @@ Cosmos.Data.ItemForm = function() {
 
 
         updateModuleConfigObject = typeof updateModuleConfigObject !== 'undefined' ? updateModuleConfigObject : {};
-        var targetItemFieldWrapper = me._itemWrapper+" .cosmos-item-details-form-wrapper"; 
-        
+        var targetItemFieldWrapper = me._itemWrapper+" .cosmos-item-details-form-wrapper";
+
         // clear all input fields first
         $(targetItemFieldWrapper+" input").val("");
         $(targetItemFieldWrapper+" textarea").val("");
 
-        // loops through fields and 
+        // loops through fields and
         var itemInputFields = Cosmos.Data.Traverse(updateModuleConfigObject, 'itemDetailsModule.itemDetailsInputFields');
-        
+
         for (var i=0, max=itemInputFields.length; i < max; i++) {
             Cosmos.Data.updateInputFeildElement(targetItemFieldWrapper, itemInputFields[i]);
         }
 
         $(targetItemFieldWrapper+' .cosmos-item-submit-wrapper').show();
-       
+
 
         //$(targetItemFieldWrapper+' input').not(':button, :submit, :reset, :hidden').val('');
 
@@ -1157,15 +1157,15 @@ Cosmos.Data.ItemForm = function() {
 
         }
 
-        
+
     };
 
     this.gotoThanks = function() {
 
         me = this;
 
-        var targetItemFieldWrapper = me._itemWrapper+" .cosmos-item-details-form-wrapper"; 
-        
+        var targetItemFieldWrapper = me._itemWrapper+" .cosmos-item-details-form-wrapper";
+
         // clear all input fields first
         $(targetItemFieldWrapper+" input").val("");
         $(targetItemFieldWrapper+" textarea").val("");
@@ -1188,12 +1188,12 @@ Cosmos.Data.ItemForm = function() {
         // refreshes the page if set to do so
         if(Cosmos.Data.Traverse(this, '_cosmosDataThanks._moduleConfigObject.thanksModule.thanksAutoRefresh')) {
             location.reload();
-        } 
+        }
         // anchors the page if set to do so
         var anchor = Cosmos.Data.Traverse(this, '_cosmosDataThanks._moduleConfigObject.thanksModule.thanksAnchorTo');
         if(anchor) {
             $('html,body').animate({scrollTop: ($('#'+anchor).offset().top - 80)}, 200);
-        } 
+        }
 
 
     };
@@ -1252,15 +1252,15 @@ Cosmos.Data.Thanks = function() {
         var thanksTitleHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'thanksModule.thanksTitleHtml');
         if(thanksTitleHtml !== ""){
             $(this._thanksWrapper+' .cosmos-thanks-title').html(thanksTitleHtml);
-        }    
+        }
         var thanksIntroductionHtml = Cosmos.Data.Traverse(this._moduleConfigObject, 'thanksModule.thanksIntroductionHtml');
         if(thanksIntroductionHtml !== ""){
-            $(this._thanksWrapper+' .cosmos-thanks-introduction').html(thanksIntroductionHtml);            
+            $(this._thanksWrapper+' .cosmos-thanks-introduction').html(thanksIntroductionHtml);
         }
 
         $(this._thanksWrapper).hide();
 
-        
+
     };
 }
 
@@ -1286,7 +1286,7 @@ Cosmos.Data.updateInputFeildElement = function(targetWrapper, inputFieldObj) {
 
 Cosmos.Data.createInputFeildElement = function(targetWrapper, inputFieldObj) {
     //console.log(inputFieldObj);
-    
+
     var inputHtml = '';
     switch(inputFieldObj.fieldType) {
         case "html":
@@ -1312,7 +1312,7 @@ Cosmos.Data.createInputFeildElement = function(targetWrapper, inputFieldObj) {
             var additionalAttributes = "";
             if(inputFieldObj.readOnlyField){
                 additionalAttributes += ' readonly="readonly" ';
-            }// 
+            }//
             // checks if it's a large textfield
             if(inputFieldObj.fieldSize !== "cosmos-field-tiny" && inputFieldObj.fieldSize !== "cosmos-field-small" && inputFieldObj.fieldSize !== "cosmos-field-medium"){
                 // MULTIROW TEXTAREA
@@ -1352,15 +1352,15 @@ Cosmos.Data.createInputFeildElement = function(targetWrapper, inputFieldObj) {
             break;
         default:
             break;
-          
+
     }
     $(targetWrapper).append(inputHtml);
-    
+
 };
 
 Cosmos.Data.Traverse = function( val, names ) {
-    names = names.split( '.' );           
-    while ( val && names.length ) { val = val[ names.shift() ]; }    
+    names = names.split( '.' );
+    while ( val && names.length ) { val = val[ names.shift() ]; }
 
     if (typeof val == "undefined"){
         val = "";
@@ -1370,7 +1370,7 @@ Cosmos.Data.Traverse = function( val, names ) {
 
 
 
-    
+
 
 
 
@@ -1405,17 +1405,17 @@ Cosmos.Data.Item = function() {
 
         me = this;
 
-        varObj = typeof varObj !== 'undefined' ? varObj : {};        
-        
-        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string'); 
+        varObj = typeof varObj !== 'undefined' ? varObj : {};
+
+        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string');
         if(varObj.externalReferenceString !== ""){
             varObj.external_reference_string = varObj.external_reference_string;
         }
 
-        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit'); 
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success'); 
-        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType'); 
-        varObj.cosmos_force = Cosmos.Data.Traverse(varObj, 'cosmos_force'); 
+        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit');
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
+        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType');
+        varObj.cosmos_force = Cosmos.Data.Traverse(varObj, 'cosmos_force');
 
         if(varObj.dataType === ""){
             varObj.dataType = "json";
@@ -1469,17 +1469,17 @@ Cosmos.Data.Item = function() {
 
         me = this;
 
-        varObj = typeof varObj !== 'undefined' ? varObj : {};        
-        
-        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string'); 
+        varObj = typeof varObj !== 'undefined' ? varObj : {};
+
+        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string');
         if(varObj.external_reference_string !== ""){
             varObj.external_reference_string = varObj.external_reference_string;
         }
 
-        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit'); 
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success');  
-        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType'); 
-        varObj.cosmos_force = Cosmos.Data.Traverse(varObj, 'cosmos_force'); 
+        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit');
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
+        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType');
+        varObj.cosmos_force = Cosmos.Data.Traverse(varObj, 'cosmos_force');
 
         if(varObj.dataType === ""){
             varObj.dataType = "json";
@@ -1535,17 +1535,17 @@ Cosmos.Data.Item = function() {
 
         me = this;
 
-        varObj = typeof varObj !== 'undefined' ? varObj : {};        
-        
-        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string'); 
+        varObj = typeof varObj !== 'undefined' ? varObj : {};
+
+        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string');
         if(varObj.external_reference_string !== ""){
             varObj.external_reference_string = varObj.external_reference_string;
         }
 
-        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit'); 
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success');  
-        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType'); 
-        varObj.cosmos_force = Cosmos.Data.Traverse(varObj, 'cosmos_force'); 
+        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit');
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
+        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType');
+        varObj.cosmos_force = Cosmos.Data.Traverse(varObj, 'cosmos_force');
 
         if(varObj.dataType === ""){
             varObj.dataType = "json";
@@ -1591,16 +1591,16 @@ Cosmos.Data.Item = function() {
 
 
     this.activateOrDeactivate = function(varObj, varActivateOrDeactivate) {
-        varObj = typeof varObj !== 'undefined' ? varObj : {};        
-        
-        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string'); 
+        varObj = typeof varObj !== 'undefined' ? varObj : {};
+
+        varObj.external_reference_string = Cosmos.Data.Traverse(varObj, 'external_reference_string');
         if(varObj.external_reference_string !== ""){
             varObj.external_reference_string = varObj.external_reference_string;
         }
 
-        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit'); 
-        varObj.success = Cosmos.Data.Traverse(varObj, 'success'); 
-        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType'); 
+        varObj.beforeSubmit = Cosmos.Data.Traverse(varObj, 'beforeSubmit');
+        varObj.success = Cosmos.Data.Traverse(varObj, 'success');
+        varObj.dataType = Cosmos.Data.Traverse(varObj, 'dataType');
 
         if(varObj.dataType === ""){
             varObj.dataType = "json";
@@ -1626,7 +1626,7 @@ Cosmos.Data.Item = function() {
                 if(me._debugMode) console.log(xhr);
             }
         });
-        
+
     }
 };
 
@@ -1881,7 +1881,7 @@ Cosmos.Data.Item = function() {
 
 /*
  * Style File - jQuery plugin for styling file input elements
- *  
+ *
  * Copyright (c) 2007-2008 Mika Tuupola
  *
  * Licensed under the MIT license:
@@ -1895,20 +1895,20 @@ Cosmos.Data.Item = function() {
  */
 
 (function($) {
-    
+
     $.fn.filestyle = function(options) {
-                
+
         /* TODO: This should not override CSS. */
         var settings = {
             width : 250
         };
-                
+
         if(options) {
             $.extend(settings, options);
         };
-                        
+
         return this.each(function() {
-            
+
             var self = this;
             var wrapper = $("<div>")
                             .css({
@@ -1920,7 +1920,7 @@ Cosmos.Data.Item = function() {
                                 "position": "absolute",
                                 "overflow": "hidden"
                             });
-                            
+
             var filename = $('<input class="file">')
                              .addClass($(self).attr("class"))
                              .css({
@@ -1944,23 +1944,23 @@ Cosmos.Data.Item = function() {
 
             if ($.browser.mozilla) {
                 if (/Win/.test(navigator.platform)) {
-                    $(self).css("margin-left", "-142px");                    
+                    $(self).css("margin-left", "-142px");
                 } else {
-                    $(self).css("margin-left", "-168px");                    
+                    $(self).css("margin-left", "-168px");
                 };
             } else {
-                $(self).css("margin-left", settings.imagewidth - settings.width + "px");                
+                $(self).css("margin-left", settings.imagewidth - settings.width + "px");
             };
 
             $(self).bind("change", function() {
                 filename.val($(self).val());
             });
-      
+
         });
-        
+
 
     };
-    
+
 })(jQuery);
 
 
@@ -2035,7 +2035,7 @@ Cosmos.Data.Item = function() {
             target: '#output'
         });
     });
-    
+
     You can also use ajaxForm with delegation (requires jQuery v1.7+), so the
     form does not have to exist when you invoke ajaxForm:
 
@@ -2043,7 +2043,7 @@ Cosmos.Data.Item = function() {
         delegation: true,
         target: '#output'
     });
-    
+
     When using ajaxForm, the ajaxSubmit function will be invoked for you
     at the appropriate time.
 */
@@ -2067,7 +2067,7 @@ $.fn.ajaxSubmit = function(options) {
         log('ajaxSubmit: skipping submit process - no element selected');
         return this;
     }
-    
+
     var method, action, url, $form = this;
 
     if (typeof options == 'function') {
@@ -2109,7 +2109,7 @@ $.fn.ajaxSubmit = function(options) {
     if ( traditional === undefined ) {
         traditional = $.ajaxSettings.traditional;
     }
-    
+
     var elements = [];
     var qx, a = this.formToArray(options.semantic, elements);
     if (options.data) {
@@ -2133,7 +2133,7 @@ $.fn.ajaxSubmit = function(options) {
     var q = $.param(a, traditional);
     if (qx) {
         q = ( q ? (q + '&' + qx) : qx );
-    }    
+    }
     if (options.type.toUpperCase() == 'GET') {
         options.url += (options.url.indexOf('?') >= 0 ? '&' : '?') + q;
         options.data = null;  // data is null for 'get'
@@ -2163,7 +2163,7 @@ $.fn.ajaxSubmit = function(options) {
     }
 
     options.success = function(data, status, xhr) { // jQuery 1.4+ passes xhr as 3rd arg
-        var context = options.context || this ;    // jQuery 1.4+ supports scope context 
+        var context = options.context || this ;    // jQuery 1.4+ supports scope context
         for (var i=0, max=callbacks.length; i < max; i++) {
             callbacks[i].apply(context, [data, status, xhr || $form, $form]);
         }
@@ -2248,7 +2248,7 @@ $.fn.ajaxSubmit = function(options) {
             cache: false,
             type: method || 'POST'
         });
-        
+
         if (options.uploadProgress) {
             // workaround because jqXHR does not expose upload property
             s.xhr = function() {
@@ -2291,7 +2291,7 @@ $.fn.ajaxSubmit = function(options) {
             deferred.reject();
             return deferred;
         }
-        
+
         if (a) {
             // ensure that every serialized input is still enabled
             for (i=0; i < elements.length; i++) {
@@ -2385,7 +2385,7 @@ $.fn.ajaxSubmit = function(options) {
                 }
             }
         }
-        
+
         var CLIENT_TIMEOUT_ABORT = 1;
         var SERVER_ABORT = 2;
 
@@ -2393,7 +2393,7 @@ $.fn.ajaxSubmit = function(options) {
             var doc = frame.contentWindow ? frame.contentWindow.document : frame.contentDocument ? frame.contentDocument : frame.document;
             return doc;
         }
-        
+
         // Rails CSRF hack (thanks to Yvan Barthelemy)
         var csrf_token = $('meta[name=csrf-token]').attr('content');
         var csrf_param = $('meta[name=csrf-param]').attr('content');
@@ -2428,7 +2428,7 @@ $.fn.ajaxSubmit = function(options) {
             if (s.timeout) {
                 timeoutHandle = setTimeout(function() { timedOut = true; cb(CLIENT_TIMEOUT_ABORT); }, s.timeout);
             }
-            
+
             // look for server aborts
             function checkState() {
                 try {
@@ -2527,7 +2527,7 @@ $.fn.ajaxSubmit = function(options) {
             }
             if (io.detachEvent)
                 io.detachEvent('onload', cb);
-            else    
+            else
                 io.removeEventListener('load', cb, false);
 
             var status = 'success', errMsg;
@@ -2718,7 +2718,7 @@ $.fn.ajaxSubmit = function(options) {
 $.fn.ajaxForm = function(options) {
     options = options || {};
     options.delegation = options.delegation && $.isFunction($.fn.on);
-    
+
     // in jQuery 1.3+ we can fix mistakes with the ready state
     if (!options.delegation && this.length === 0) {
         var o = { s: this.selector, c: this.context };
@@ -2748,7 +2748,7 @@ $.fn.ajaxForm = function(options) {
         .bind('click.form-plugin', options, captureSubmittingElement);
 };
 
-// private event handlers    
+// private event handlers
 function doAjaxSubmit(e) {
     /*jshint validthis:true */
     var options = e.data;
@@ -2757,7 +2757,7 @@ function doAjaxSubmit(e) {
         $(this).ajaxSubmit(options);
     }
 }
-    
+
 function captureSubmittingElement(e) {
     /*jshint validthis:true */
     var target = e.target;
@@ -2837,14 +2837,14 @@ $.fn.formToArray = function(semantic, elements) {
 
         v = $.fieldValue(el, true);
         if (v && v.constructor == Array) {
-            if (elements) 
+            if (elements)
                 elements.push(el);
             for(j=0, jmax=v.length; j < jmax; j++) {
                 a.push({name: n, value: v[j]});
             }
         }
         else if (feature.fileapi && el.type == 'file' && !el.disabled) {
-            if (elements) 
+            if (elements)
                 elements.push(el);
             var files = el.files;
             if (files.length) {
@@ -2858,7 +2858,7 @@ $.fn.formToArray = function(semantic, elements) {
             }
         }
         else if (v !== null && typeof v != 'undefined') {
-            if (elements) 
+            if (elements)
                 elements.push(el);
             a.push({name: n, value: v, type: el.type, required: el.required});
         }
@@ -3101,7 +3101,7 @@ $.fn.ajaxSubmit.debug = false;
 
 // helper fn for console logging
 function log() {
-    if (!$.fn.ajaxSubmit.debug) 
+    if (!$.fn.ajaxSubmit.debug)
         return;
     var msg = '[jquery.form] ' + Array.prototype.join.call(arguments,'');
     if (window.console && window.console.log) {
@@ -3113,4 +3113,3 @@ function log() {
 }
 
 })(jQuery);
-    
