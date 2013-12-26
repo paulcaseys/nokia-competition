@@ -3,9 +3,9 @@
  * Filename: js/app/collections/ExampleCollection
  *
  * collection of models
- * 
+ *
  */
-// 
+//
 
 
 // require js: defines the required js libraries and app files
@@ -19,7 +19,7 @@ define([
   // required collections
   //'App.Collections.ExampleCollection',
 
-  // required models  
+  // required models
   'App.Models.FeaturesModel'
 
   // required views
@@ -27,7 +27,7 @@ define([
 
 
 
-// require js: defines the 
+// require js: defines the
 ], function($, _, Backbone, FeaturesModel){
 
   // Todo Collection
@@ -43,7 +43,7 @@ define([
 
         // loads the feature items
         var GItems = new FeaturesModel();
-        GItems.url = "http://cosmos.is:81/api/service/data/format/jsonp/?project_name=NokiaNine&project_password=9ee360efafb2e2d5d6d8f5e259df151d&table=unique_references&batch=1&batchSize=50&whereConditionArray=project_id||85&select=*&orderBy=vote_count||desc&callback=?";
+        GItems.url = "http://cosmosis-api.com:81/api/service/data/format/jsonp/?project_name=NokiaNine&project_password=9ee360efafb2e2d5d6d8f5e259df151d&table=unique_references&batch=1&batchSize=50&whereConditionArray=project_id||85&select=*&orderBy=vote_count||desc&callback=?";
         GItems.type = 'GET';
         GItems.dataType = 'jsonp';
         GItems.fetch({success: onDataLoadComplete});
@@ -57,7 +57,7 @@ define([
 
     }
 
- 
+
   });
 
 
