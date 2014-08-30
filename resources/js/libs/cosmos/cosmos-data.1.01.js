@@ -42,8 +42,8 @@ if (!window.Cosmos.Project) {
 if (!window.Cosmos.Config) {
     window.Cosmos.Config = {};
     window.Cosmos.Config.ReferenceDataArray = ['detail_MessageId', 'detail_ImageFile', 'detail_ImageDescription', 'detail_DateReceived', 'detail_Name', 'detail_FirstName', 'detail_LastName', 'detail_HomePhoneNumber', 'detail_EmailAddress', 'detail_Address', 'detail_Address2', 'detail_Suburb', 'detail_Postcode', 'detail_State', 'detail_Country', 'detail_DateOfBirth', 'detail_Gen1', 'detail_Gen2', 'detail_Gen3', 'detail_Gen4', 'detail_Gen5', 'detail_Gen6', 'detail_Gen7', 'detail_Gen8', 'detail_Gen9', 'detail_Gen10', 'page_title', 'page_summary', 'page_body_text', 'page_image_url'];
-    window.Cosmos.Config.ServiceUrl = "http://cosmosis-api.com:81/api/service/";
-    window.Cosmos.Config.FormModuleUrl = "http://cosmosis-api.com:81/form/module/";
+    window.Cosmos.Config.ServiceUrl = "http://cosmosis-api.com/api/service/";
+    window.Cosmos.Config.FormModuleUrl = "http://cosmosis-api.com/form/module/";
 }
 
 $(document).ready(function(){
@@ -125,7 +125,7 @@ Cosmos.Data.newForm = function() {
         this._cosmosFormWrapper = cosmosFormWrapper;
         var loadUrl = Cosmos.Config.FormModuleUrl+"?project_name="+this._projectName+"&project_password=" +this._projectPassword+"&module_name="+this._moduleName+'&ver=' + ((new Date()).getTime()) + additionalAttributes;
 
-        //$(this._cosmosFormWrapper).load("http://cosmos.is:81/form/module/?project_name="+this._projectName+"&project_password=" +this._projectPassword+ '&ver=' + ((new Date()).getTime()));
+        //$(this._cosmosFormWrapper).load("http://cosmos.is/form/module/?project_name="+this._projectName+"&project_password=" +this._projectPassword+ '&ver=' + ((new Date()).getTime()));
         $.ajax({
             type: "get",
             url: loadUrl,
