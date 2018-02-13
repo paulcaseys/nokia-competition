@@ -39,7 +39,7 @@ define([
         
             // hides the element until App.Models.StateModel.showView(WheteverView) calls the transitionIn() function
             $(this.el).hide();
-            
+            /*
             // creates an example event listener
             this.on('testCall', this.testMethod, this);
 
@@ -51,6 +51,14 @@ define([
             var _cosmosForm = new Cosmos.Data.newForm();
             _cosmosForm.defineProjectSettings(_cosmosProjectName, _cosmosProjectPassword, true);
             _cosmosForm.setupForm(_cosmosFormWrapper);
+            */
+           //$("#cosmos-form-wrapper").load("fake-form.html");
+           $.get( "fake-form.html", function( data ) {
+            $( "#cosmos-form-wrapper" ).html( data );
+            console.log( "Load was performed." );
+            });
+           //console.log("FORMFORM");
+           //$("#cosmos-form-wrapper").html('"asdf"');
             
         },
 
